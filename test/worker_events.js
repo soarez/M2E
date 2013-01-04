@@ -28,7 +28,7 @@ test('worker_events', function() {
 });
 
 test('m2e instance', function() {
-  var worker = new Worker('worker_2.js?fuck_cache=' + +new Date());
+  var worker = new Worker('worker_2.js?fu_cache=' + +new Date());
 
   var m2e = new M2E();
   m2e.sendMessage = worker.postMessage.bind(worker);
