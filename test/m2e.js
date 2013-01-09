@@ -15,3 +15,14 @@ test('event2message', function() {
 
   ok(message === 'evt2:' + JSON.stringify(args));
 })
+
+test('both', function() {
+  var evtName = 'evt2';
+  var args = [{a:1}, {b:2}];
+
+  var message = event2message(evtName, args);
+  var evt = message2event(message);
+
+  ok(evt.name === evtName);
+  ok(JSON.stringify(args) === JSON.stringify(evt.args));
+});
