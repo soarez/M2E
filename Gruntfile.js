@@ -29,15 +29,25 @@ module.exports = function(grunt) {
         ],
         dest: 'dist/<%= distName %>.js'
       }
+    },
+
+    uglify: {
+      min: {
+        files: {
+          'dist/<%= distName %>.min.js': ['dist/<%= distName %>.js']
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerTask('prelint', 'jshint:src');
   grunt.registerTask('cat', 'concat:dist');
   grunt.registerTask('postlint', 'jshint:concatenated');
-  grunt.registerTask('default', ['prelint', 'cat', 'postlint']);
+  grunt.registerTask('min', 'uglify:min');
+  grunt.registerTask('default', ['prelint', 'cat', 'postlint', 'min']);
 
 };
