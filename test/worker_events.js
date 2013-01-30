@@ -20,7 +20,7 @@ test('worker_events', function() {
     ok(arg1 == p1);
     ok(arg2 == p2);
     start();
-  })
+  });
   em.fire('echo', p1, p2);
 
   expect(2);
@@ -28,7 +28,7 @@ test('worker_events', function() {
 });
 
 test('m2e instance', function() {
-  var worker = new Worker('worker_2.js?fu_cache=' + +new Date());
+  var worker = new Worker('worker_2.js?fu_cache=' + (+new Date()));
 
   var m2e = new M2E();
   m2e.sendMessage = worker.postMessage.bind(worker);
@@ -41,7 +41,7 @@ test('m2e instance', function() {
     ok(arg1 == p1);
     ok(arg2 == p2);
     start();
-  })
+  });
   m2e.fire('echo', p1, p2);
 
   expect(2);
