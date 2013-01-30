@@ -1,0 +1,23 @@
+{
+  "name": "m2e",
+  "version": "0.1.0",
+  "description": "Message to events plugin",
+  "main": "",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-jshint": "~0.1.0",
+    "grunt-contrib-connect": "~0.1.0",
+    "grunt-contrib-qunit": "~0.1.1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "BSD",
+  "gitHead": "0a8e14b5ba1e80d281c87ee3566b5697cd1a745e",
+  "readmeFilename": "README.md"
+}
