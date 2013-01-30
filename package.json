@@ -12,9 +12,7 @@
   "devDependencies": {
     "grunt": "~0.4.0",
     "grunt-contrib-jshint": "~0.1.0",
-    "grunt-contrib-connect": "~0.1.0",
-    "grunt-contrib-qunit": "~0.1.1",
-    "grunt-contrib-concat": "~0.1.1"
+    "grunt-contrib-concat": "~0.1.2rc6"
   },
   "repository": {
     "type": "git",
@@ -23,13 +21,6 @@
   "author": "Igor Soarez <igorsoarez@gmail.com>",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "dependencies": {
-    "grunt-contrib-qunit": "~0.1.1rc6",
-    "grunt": "~0.4.0rc7",
-    "grunt-contrib-concat": "~0.1.1",
-    "grunt-contrib-connect": "~0.1.0",
-    "grunt-contrib-jshint": "~0.1.0"
-  },
   "keywords": [
     "Message",
     "Events"
