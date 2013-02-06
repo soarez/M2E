@@ -1,5 +1,5 @@
 {
-  "name": "M2E",
+  "name": "m2e",
   "version": "0.2.0",
   "description": "Message to events plugin",
   "main": "lib/m2e.js",
