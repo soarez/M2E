@@ -1,8 +1,8 @@
 {
   "name": "M2E",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Message to events plugin",
-  "main": "Gruntfile.js",
+  "main": "lib/m2e.js",
   "directories": {
     "test": "test"
   },

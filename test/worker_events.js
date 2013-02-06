@@ -1,37 +1,41 @@
-test('worker_events', function() {
-  var worker = new Worker('worker_1.js');
-
-  var em = new EventManager();
-
-  // ***********
-  // ** M2E PLUG
-  var oldTrigger = em.trigger;
-  em.trigger = function(evtName, args) {
-    var message = event2message(evtName, args);
-    worker.postMessage(message);
+test('end to end', function() {
+  var channel1 = new M2E();
+  channel1.sendMessage = function() {
+    var args = Array.prototype.slice.call(arguments);
+    sendMessageTo2.apply(null, args);
   };
-  worker.onmessage = function(event) {
-    var evt = message2event(event.data);
-    oldTrigger.call(em, evt.name, evt.args);
+
+  var channel2 = new M2E();
+  channel2.sendMessage = function() {
+    var args = Array.prototype.slice.call(arguments);
+    sendMessageTo1.apply(null, args);
   };
+  
+  function sendMessageTo1(msg) { channel1.onmessage(msg); }
+  function sendMessageTo2(msg) { channel2.onmessage(msg); }
+
+  channel2.listen('echo', function(arg1, arg2) {
+    channel2.fire('customEvt', arg1, arg2);
+  });
 
   var p1 = 'abc', p2 = 'def';
-  em.listen('customEvt', function(arg1, arg2) {
+  channel1.listen('customEvt', function(arg1, arg2) {
     ok(arg1 == p1);
     ok(arg2 == p2);
-    start();
   });
-  em.fire('echo', p1, p2);
+  channel1.fire('echo', p1, p2);
 
   expect(2);
-  stop();
 });
 
 test('m2e instance', function() {
-  var worker = new Worker('worker_2.js?fu_cache=' + (+new Date()));
+  var worker = new Worker('worker.js?fu_cache=' + (+new Date()));
 
   var m2e = new M2E();
-  m2e.sendMessage = worker.postMessage.bind(worker);
+  m2e.sendMessage = function() {
+    var args = Array.prototype.slice.call(arguments);
+    worker.postMessage.apply(worker, args);
+  };
   worker.onmessage = function(event) {
     m2e.onmessage(event.data);
   };

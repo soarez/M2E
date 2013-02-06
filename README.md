@@ -43,6 +43,14 @@ GUI thread:
     })
     m2e.fire('echo', p1, p2);
 
+#### `trigger()` vs `fire()`
+
+`trigger` is to `fire` as `apply` is to `call`.
+
+    // same
+    m2e.trigger('evtName', [arg1, arg2]);
+    m2e.fire('evtName', arg1, arg2);
+
 ## License
 
 MIT
