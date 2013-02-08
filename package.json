@@ -1,12 +1,13 @@
 {
   "name": "m2e",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Message to events plugin",
   "main": "lib/m2e.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
+    "install": "grunt",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
