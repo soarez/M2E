@@ -7,13 +7,13 @@
 </head>
 <body>
   <div id="qunit"></div>
-  <script src="../dist/M2E-0.1.0.min.js"></script>
+  <script src="../dist/m2e-0.2.2.js"></script>
 
   <script src="vendor/qunit-1.10.0.js"></script>
 
   <script>
     test('m2e instance', function() {
-      var worker = new Worker('worker_2.js?fu_cache=' + (+new Date()));
+      var worker = new Worker('worker.js?fu_cache=' + (+new Date()));
 
       var m2e = new M2E();
       m2e.sendMessage = worker.postMessage.bind(worker);

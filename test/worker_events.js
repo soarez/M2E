@@ -32,11 +32,12 @@ test('m2e instance', function() {
   var worker = new Worker('worker.js?fu_cache=' + (+new Date()));
 
   var m2e = new M2E();
-  m2e.sendMessage = function() {
-    var args = Array.prototype.slice.call(arguments);
-    worker.postMessage.apply(worker, args);
+  m2e.sendMessage = function(arg) {
+    worker.postMessage(arg);
+    console.log('msg sent to worker: %s', arg);
   };
   worker.onmessage = function(event) {
+    console.log('msg received from worker: %s', event.data);
     m2e.onmessage(event.data);
   };
 

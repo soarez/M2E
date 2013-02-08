@@ -12,4 +12,3 @@ self.onmessage = function(event) {
 m2e.listen('echo', function(arg1, arg2) {
   m2e.fire('customEvt', arg1, arg2);
 });
-
