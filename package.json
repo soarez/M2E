@@ -1,6 +1,6 @@
 {
   "name": "m2e",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Message to events plugin",
   "main": "lib/m2e.js",
   "directories": {
