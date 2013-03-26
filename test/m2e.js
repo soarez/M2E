@@ -26,3 +26,22 @@ test('both', function() {
   ok(evt.name === evtName);
   ok(JSON.stringify(args) === JSON.stringify(evt.args));
 });
+
+test('errors', function() {
+  var m2e = new M2E();
+
+  var error;
+
+  m2e.sendMessage = function() {
+    error = Error();
+    throw error;
+  };
+
+  m2e.on(m2e.errorEvtName, function(e) {
+    ok(e === error);
+  });
+
+  m2e.fire('test');
+
+  expect(1);
+});
