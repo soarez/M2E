@@ -26,3 +26,19 @@ test('event parameters', function() {
 
   expect(2);
 });
+
+test('listners', function() {
+  var em = new EventManager();
+
+  em.listen('evt1', cb1);
+  em.listen('evt1', cb2);
+
+  function cb1() {}
+  function cb2() {}
+
+  var listeners = em.listeners('evt1');
+  ok(~listeners.indexOf(cb1));
+  ok(~listeners.indexOf(cb2));
+
+  expect(2);
+});
