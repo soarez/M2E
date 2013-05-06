@@ -1,19 +1,18 @@
 {
   "name": "m2e",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Message to events plugin",
-  "main": "lib/m2e.js",
+  "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tap tests/*.js",
+    "build": "browserify index.js -o build/m2e.js"
   },
   "devDependencies": {
-    "grunt": "~0.4.0",
-    "grunt-contrib-jshint": "~0.1.0",
-    "grunt-contrib-concat": "~0.1.2rc6",
-    "grunt-contrib-uglify": "~0.1.1rc6"
+    "tap": "~0.4.2",
+    "browserify": "~2.13.2"
   },
   "repository": {
     "type": "git",

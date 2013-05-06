@@ -8,48 +8,43 @@ I prefer to work with events.
 
 ## Usage
 
+To create an M2E object, you need to give it a function to send messages,
+when events are triggered, and there's a hook you're responsible to call when
+a new message arrives.
+
 Example with webworkers:
 
-    // WebWorker
+````js
+// WebWorker
 
-    importScripts('/lib/event_manager.js', '/lib/m2e.js');
+importScripts('build/m2e.js);
 
-    // ***********
-    // ** M2E PLUG
-    var m2e = new M2E();
-    m2e.sendMessage = self.postMessage.bind(self);
-    self.onmessage = function(event) {
-      m2e.onmessage(event.data);
-    }
+// ***********
+// ** M2E PLUG
+var m2e = M2E(self.postMessage.bind(self));
+self.onmessage = function(event) { m2e.onmessage(event.data); };
 
-    m2e.listen('echo', function(arg1, arg2) {
-      m2e.fire('customEvt', arg1, arg2);
-    });
+// 
+m2e.addListener('echo', function(arg1, arg2) {
+  m2e.emit('customEvt', arg1, arg2);
+});
+````
 
 GUI thread:
 
-    var worker = new Worker('worker.js?fu_cache=' + +new Date());
+````js
+var worker = new Worker('worker.js?fu_cache=' + +new Date());
 
-    var m2e = new M2E();
-    m2e.sendMessage = worker.postMessage.bind(worker);
-    worker.onmessage = function(event) {
-      m2e.onmessage(event.data);
-    };
+var m2e = M2E(worker.postMessage.bind(worker));
+worker.onmessage = function(event) { m2e.onmessage(event.data); };
 
-    var p1 = 'abc', p2 = 'def';
-    m2e.listen('customEvt', function(arg1, arg2) {
-      // p1 == 'abc'
-      // p2 == 'def'
-    })
-    m2e.fire('echo', p1, p2);
-
-#### `trigger()` vs `fire()`
-
-`trigger` is to `fire` as `apply` is to `call`.
-
-    // same
-    m2e.trigger('evtName', [arg1, arg2]);
-    m2e.fire('evtName', arg1, arg2);
+var p1 = 'abc', p2 = 'def';
+m2e.addListener('customEvt', function(arg1, arg2) {
+  // p1 == 'abc'
+  // p2 == 'def'
+})
+m2e.emit('echo', p1, p2);
+````
 
 ## License
 
