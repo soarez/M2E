@@ -26,10 +26,10 @@ function message2event(message) {
   };
 }
 
-function M2E(onMessage) {
+function M2E(sendMessage) {
   var m2e = new EventEmitter;
 
-  m2e.onMessage = onMessage;
+  m2e.sendMessage = sendMessage;
 
   var localEmit = m2e.emit;
 

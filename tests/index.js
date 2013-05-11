@@ -57,3 +57,28 @@ test('two instances', function(t) {
 
   t.end();
 });
+
+test('use constructor to sendMessage', function(t) {
+  var m2eA = M2E(sendMessageToB);
+  var m2eB = M2E(sendMessageToA);
+
+  function sendMessageToA(m) { m2eA.onMessage(m); }
+  function sendMessageToB(m) { m2eB.onMessage(m); }
+
+  var evtName = Math.random().toString();
+  var arg1 = Math.random().toString();
+  var arg2 = Math.random().toString();
+  var arg3 = Math.random().toString();
+
+  m2eB.on(evtName, function(a1, a2, a3) {
+    t.ok(a1);
+    t.ok(a2);
+    t.ok(a3);
+    t.equal(a1, arg1);
+    t.equal(a2, arg2);
+    t.equal(a3, arg3);
+  })
+  m2eA.emit(evtName, arg1, arg2, arg3);
+
+  t.end();
+});
