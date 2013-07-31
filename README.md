@@ -22,7 +22,7 @@ importScripts('build/m2e.js);
 // ***********
 // ** M2E PLUG
 var m2e = M2E(self.postMessage.bind(self));
-self.onmessage = function(event) { m2e.onmessage(event.data); };
+self.onmessage = function(event) { m2e.onMessage(event.data); };
 
 // 
 m2e.addListener('echo', function(arg1, arg2) {
@@ -36,7 +36,7 @@ GUI thread:
 var worker = new Worker('worker.js?fu_cache=' + +new Date());
 
 var m2e = M2E(worker.postMessage.bind(worker));
-worker.onmessage = function(event) { m2e.onmessage(event.data); };
+worker.onmessage = function(event) { m2e.onMessage(event.data); };
 
 var p1 = 'abc', p2 = 'def';
 m2e.addListener('customEvt', function(arg1, arg2) {
