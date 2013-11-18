@@ -45,7 +45,7 @@ function M2E(sendMessage) {
     if (!M2E.propagateNewListener && name === 'newListener')
       return;
 
-    var msg = event2message(name, args);
+    var msg = this.event2message(name, args);
     try {
       this.sendMessage(msg);
     } catch (error) {
@@ -58,11 +58,14 @@ function M2E(sendMessage) {
 
   m2e.onMessage =
   function onMessage(msg) {
-    var evt = message2event(msg);
+    var evt = this.message2event(msg);
     var args = evt.args;
     args.unshift(evt.name);
     localEmit.apply(m2e, args);
   };
+
+  m2e.message2event = message2event;
+  m2e.event2message = event2message;
 
   return m2e;
 }
